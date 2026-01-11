@@ -1,0 +1,199 @@
+<?php
+session_start();
+// Send headers to prevent caching
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+// Get error message from session if exists
+$error_message = isset($_SESSION['login_error']) ? $_SESSION['login_error'] : '';
+// Clear the error message after retrieving it
+unset($_SESSION['login_error']);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Login - Ironix Hardware Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #243b55 0%, #f5a623 100%);
+      min-height: 100vh;
+      font-family: 'Poppins', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(36,59,85,0.18);
+      padding: 40px 32px 32px 32px;
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      margin: 20px;
+    }
+    .login-container h2 {
+      color: #243b55;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .login-container .brand {
+      color: #f5a623;
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    .login-form {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .login-form .input-group {
+      display: flex;
+      align-items: center;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 12px 16px;
+      border: 1.5px solid #e0e0e0;
+      transition: all 0.3s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .login-form .input-group:focus-within {
+      border: 1.5px solid #f5a623;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(245,166,35,0.1);
+    }
+    .login-form .input-group i {
+      color: #f5a623;
+      margin-right: 10px;
+      font-size: 1.1em;
+    }
+    .login-form input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 1em;
+      flex: 1;
+      color: #243b55;
+      padding: 4px 0;
+      width: 100%;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .login-form input::placeholder {
+      color: #b0b0b0;
+    }
+    .login-form button {
+      background: linear-gradient(90deg, #f5a623 0%, #243b55 100%);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 0;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 12px rgba(245,166,35,0.15);
+      letter-spacing: 1px;
+    }
+    .login-form button:hover {
+      background: linear-gradient(90deg, #243b55 0%, #f5a623 100%);
+      color: #243b55;
+    }
+    .login-footer {
+      margin-top: 24px;
+      color: #888;
+      font-size: 0.95em;
+      text-align: center;
+    }
+    .login-footer a {
+      color: #f5a623;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .login-footer a:hover {
+      color: #f39c12;
+      text-decoration: underline;
+    }
+    .error-message {
+      background-color: #fee;
+      color: #c33;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #fcc;
+      font-size: 0.9em;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slideDown 0.3s ease-out;
+    }
+    .error-message i {
+      color: #c33;
+      font-size: 1.1em;
+      flex-shrink: 0;
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 500px) {
+      .login-container {
+        padding: 24px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="brand"><i class="fa-solid fa-screwdriver-wrench"></i> Ironix</div>
+    <h2>Login to Your Account</h2>
+    <p style="color: #666; font-size: 0.9em; margin-bottom: 20px;">Enter your email and password to login</p>
+    <form class="login-form" method="post" action="login_process.php">
+      <div class="input-group">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" name="email" placeholder="Email Address" required>
+      </div>
+      <div class="input-group">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+      <button type="submit">Login</button>
+      <?php if (!empty($error_message)): ?>
+      <div class="error-message">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span><?php echo htmlspecialchars($error_message); ?></span>
+      </div>
+      <?php endif; ?>
+    </form>
+    <div class="login-footer">
+      Don't have an account? <a href="register.php">Register</a>
+    </div>
+  </div>
+</body>
+</html>

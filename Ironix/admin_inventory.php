@@ -1,0 +1,267 @@
+<?php
+// Start the session if it hasn't been started already
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "ironix";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory Dashboard - Ironix Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-blue: #243b55;
+      --main-gold: #f5a623;
+      --main-bg: #f8f9fa;
+      --card-red: #ff5e62;
+      --card-blue: #5e72e4;
+      --card-yellow: #ffd600;
+      --sidebar-bg: #232946;
+      --sidebar-active: #f5a623;
+      --sidebar-hover: #243b55;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: var(--main-bg);
+      color: var(--main-blue);
+    }
+    .dashboard-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 230px;
+      background: var(--sidebar-bg);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 0;
+      min-height: 100vh;
+      box-shadow: 2px 0 12px rgba(36,59,85,0.08);
+    }
+    .sidebar .brand {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: var(--main-gold);
+      text-align: center;
+      margin-bottom: 32px;
+      letter-spacing: 2px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+    }
+    .sidebar ul li {
+      margin-bottom: 8px;
+    }
+    .sidebar ul li a {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 32px;
+      font-size: 1.05em;
+      border-left: 4px solid transparent;
+      transition: background 0.2s, border 0.2s;
+    }
+    .sidebar ul li a.active,
+    .sidebar ul li a:hover {
+      background: var(--sidebar-hover);
+      border-left: 4px solid var(--sidebar-active);
+      color: var(--main-gold);
+    }
+    .sidebar ul li a i {
+      margin-right: 14px;
+      font-size: 1.1em;
+    }
+    .sidebar .sidebar-footer {
+      text-align: center;
+      font-size: 0.95em;
+      color: #b0b0b0;
+      margin-top: 32px;
+    }
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 36px 40px 36px 40px;
+      background: var(--main-bg);
+      min-width: 0;
+    }
+    .dashboard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .dashboard-header .welcome {
+      font-size: 1.5em;
+      font-weight: 600;
+      color: var(--main-blue);
+    }
+    .dashboard-header .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dashboard-header .profile-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--main-gold);
+    }
+    .dashboard-header .profile-name {
+      font-weight: 500;
+      color: var(--main-blue);
+    }
+    .profile-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .profile-btn {
+      background: none;
+      border: none;
+      color: var(--main-blue);
+      font-size: 1.2em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .profile-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 120%;
+      background: #fff;
+      min-width: 140px;
+      box-shadow: 0 4px 16px rgba(36,59,85,0.12);
+      border-radius: 10px;
+      z-index: 10;
+      padding: 8px 0;
+    }
+    .profile-menu a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--main-blue);
+      padding: 10px 18px;
+      text-decoration: none;
+      font-size: 1em;
+      transition: background 0.2s;
+    }
+    .profile-menu a:hover {
+      background: var(--main-gold);
+      color: #fff;
+    }
+    .profile-dropdown.show .profile-menu {
+      display: block;
+    }
+    /* Table */
+    .dashboard-table-container {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(36,59,85,0.07);
+      padding: 24px 20px;
+      margin-top: 12px;
+    }
+    @media (max-width: 900px) {
+      .dashboard-cards {
+        flex-direction: column;
+      }
+      .main-content {
+        padding: 24px 6px;
+      }
+    }
+    @media (max-width: 600px) {
+      .sidebar {
+        display: none;
+      }
+      .main-content {
+        padding: 12px 2px;
+      }
+    }
+    th, td {
+      padding: 14px 12px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="brand"><i class="fa-solid fa-screwdriver-wrench"></i> Ironix Admin</div>
+      <ul>
+        <li><a href="admin_dashboard.php"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+        <li><a href="admin_products.php"><i class="fa-solid fa-box"></i> Products</a></li>
+        <li><a href="admin_customers.php"><i class="fa-solid fa-users"></i> Customers</a></li>
+        <li><a href="admin_suppliers.php"><i class="fa-solid fa-truck"></i> Suppliers</a></li>
+        <li><a href="admin_orders.php"><i class="fa-solid fa-shopping-cart"></i> Orders</a></li>
+        <li><a href="admin_inventory.php" class="active"><i class="fa-solid fa-warehouse"></i> Inventory</a></li>
+        <li><a href="admin_admins.php"><i class="fa-solid fa-user-gear"></i> Admins</a></li>
+        <li><a href="admin_settings.php"><i class="fa-solid fa-gear"></i> Settings</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        &copy; 2025 Ironix Hardware Shop
+      </div>
+    </nav>
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="dashboard-header">
+        <div class="welcome">Inventory <span style="font-size:1.2em;">📦</span></div>
+        <div class="profile">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin" class="profile-img">
+          <span class="profile-name"><?php echo isset($_SESSION['admin_name']) ? htmlspecialchars($_SESSION['admin_name']) : 'Admin User'; ?></span>
+          <div class="profile-dropdown">
+            <button class="profile-btn">
+              <i class="fa-regular fa-user"></i>
+              <i class="fa-solid fa-caret-down"></i>
+            </button>
+            <div class="profile-menu">
+              <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true): ?>
+                <a href="admin_logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+              <?php else: ?>
+                <a href="admin_login.php"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                <a href="admin_register.php"><i class="fa-solid fa-user-plus"></i> Create Account</a>
+              <?php endif; ?>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inventory Content -->
+      <div class="dashboard-table-container">
+        <h2>Inventory Management</h2>
+        <p>Content for Inventory management will go here.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Profile dropdown logic (copied for consistency)
+    document.querySelector('.profile-btn').onclick = function(e) {
+      e.stopPropagation();
+      document.querySelector('.profile-dropdown').classList.toggle('show');
+    };
+    document.body.onclick = function() {
+      document.querySelector('.profile-dropdown').classList.remove('show');
+    };
+  </script>
+</body>
+</html> 

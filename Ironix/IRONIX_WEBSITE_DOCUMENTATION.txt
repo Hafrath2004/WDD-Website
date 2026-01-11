@@ -1,0 +1,1028 @@
+================================================================================
+                    IRONIX HARDWARE SHOP - WEBSITE DOCUMENTATION
+================================================================================
+
+Document Created: 2025
+Project: Ironix Hardware Shop E-Commerce Platform
+Version: 1.0
+
+================================================================================
+1. WEBSITE PURPOSE
+================================================================================
+
+Ironix Hardware Shop is a comprehensive e-commerce platform designed to provide
+an online shopping experience for hardware products and tools. The website serves
+as a digital storefront where customers can browse, search, and purchase various
+hardware items with ease.
+
+PRIMARY OBJECTIVES:
+-------------------
+- Provide an intuitive online shopping experience for hardware products
+- Enable customers to browse products, add items to cart, and complete purchases
+- Offer administrative tools for managing products, orders, customers, and inventory
+- Support supplier management and order tracking
+- Deliver a modern, responsive user interface accessible on all devices
+
+TARGET AUDIENCE:
+---------------
+- Individual consumers looking to purchase hardware tools and equipment
+- Professional contractors and builders
+- DIY enthusiasts
+- Business customers requiring bulk hardware supplies
+
+BUSINESS MODEL:
+--------------
+- B2C (Business-to-Consumer) e-commerce platform
+- Direct product sales with online ordering
+- Free shipping on all orders
+- Free returns up to 90 days
+- Secure checkout and payment processing
+
+================================================================================
+2. PAGES
+================================================================================
+
+FRONTEND PAGES (Customer-Facing):
+---------------------------------
+
+1. HOME PAGE (index.php)
+   - Purpose: Main landing page showcasing featured products
+   - Features: Product grid with dynamic loading, search functionality, navigation
+   - Content: Hero section, product cards with images, prices, and add-to-cart
+
+2. PRODUCTS PAGE (products.php)
+   - Purpose: Display all available products in a catalog format
+   - Features: Complete product listing, product cards, search integration
+   - Content: All products from database with images, descriptions, prices
+
+3. CART PAGE (cart.php)
+   - Purpose: Shopping cart management
+   - Features: View cart items, remove items, quantity display, order summary
+   - Content: Cart items with images, prices, quantities, grand total
+
+4. CHECKOUT PAGE (checkout.php)
+   - Purpose: Order review and completion
+   - Features: Order summary, customer information display, payment processing
+   - Content: Product details, customer info, total amount, buy now button
+
+5. ORDER SUCCESS PAGE (order_success.php)
+   - Purpose: Confirmation after successful order placement
+   - Features: Order confirmation message, order details
+
+6. SEARCH RESULTS PAGE (search_results.php)
+   - Purpose: Display search query results
+   - Features: Product search functionality, filtered results
+
+7. FEATURES PAGE (features.php)
+   - Purpose: Showcase website features and guarantees
+   - Features: Service highlights, guarantees, company benefits
+
+8. SERVICES PAGE (services.php)
+   - Purpose: Display services offered by Ironix
+   - Features: Service descriptions, service categories
+
+9. BLOG PAGE (blog.php)
+   - Purpose: Blog posts and product-related content
+   - Features: Blog post listings, product visualization in blog posts
+
+10. CONTACT PAGE (contact.php)
+    - Purpose: Contact information and inquiry forms
+    - Features: Contact details, contact form
+
+11. SUPPORT PAGE (support.php)
+    - Purpose: Customer support information
+    - Features: Support options, FAQ, help resources
+
+12. LOGIN PAGE (login.html / login.php)
+    - Purpose: User authentication
+    - Features: Login form, user session management
+
+13. REGISTRATION PAGE (registration.php)
+    - Purpose: New user account creation
+    - Features: Registration form, email validation, auto-login after registration
+
+BACKEND PAGES (Admin Panel):
+----------------------------
+
+1. ADMIN DASHBOARD (admin_dashboard.php)
+   - Purpose: Main admin control panel
+   - Features: Statistics cards, recent activity, quick actions
+   - Metrics: Total products, customers, current stock
+
+2. ADMIN PRODUCTS (admin_products.php)
+   - Purpose: Product management
+   - Features: Add, edit, delete products, product listing
+
+3. ADMIN CUSTOMERS (admin_customers.php)
+   - Purpose: Customer management
+   - Features: View customer list, customer details, customer information
+
+4. ADMIN SUPPLIERS (admin_suppliers.php)
+   - Purpose: Supplier management
+   - Features: Add suppliers, manage supplier information, supplier relationships
+
+5. ADMIN ORDERS (admin_orders.php)
+   - Purpose: Order management and tracking
+   - Features: View all orders, order details modal, status updates
+   - Status Options: Pending, Processing, Shipped, Delivered, Cancelled
+
+6. ADMIN INVENTORY (admin_inventory.php)
+   - Purpose: Stock and inventory management
+   - Features: Stock levels, inventory tracking, stock updates
+
+7. ADMIN ADMINS (admin_admins.php)
+   - Purpose: Admin user management
+   - Features: Manage admin accounts, admin permissions
+
+8. ADMIN SETTINGS (admin_settings.php)
+   - Purpose: System configuration
+   - Features: Website settings, system preferences
+
+9. ADMIN LOGIN (admin_login.html / admin_login.php)
+   - Purpose: Admin authentication
+   - Features: Admin login form, admin session management
+
+10. ADMIN LOGOUT (admin_logout.php)
+    - Purpose: Admin session termination
+    - Features: Logout functionality, session cleanup
+
+UTILITY PAGES:
+--------------
+
+1. ADD PRODUCT (add_product.php)
+   - Purpose: Add new products to database
+   - Features: Product form, image URL input, price management
+
+2. DELETE PRODUCT (delete_product.php)
+   - Purpose: Remove products from database
+   - Features: Product deletion functionality
+
+3. ADD TO CART (add_to_cart.php)
+   - Purpose: AJAX endpoint for adding items to cart
+   - Features: Cart management API, quantity handling
+
+4. REMOVE FROM CART (remove_from_cart.php)
+   - Purpose: AJAX endpoint for removing cart items
+   - Features: Cart item removal API
+
+5. GET PRODUCTS (get_products.php)
+   - Purpose: API endpoint for product data
+   - Features: JSON product data, dynamic product loading
+
+6. GET CART (get_cart.php)
+   - Purpose: API endpoint for cart data
+   - Features: JSON cart data retrieval
+
+7. PROCESS ORDER (process_order.php)
+   - Purpose: Order processing and database insertion
+   - Features: Order creation, order number generation, order items storage
+
+8. SETUP DATABASE (setup_database.php)
+   - Purpose: Database initialization
+   - Features: Table creation, database setup automation
+
+9. SETUP SUPPLIERS ORDERS (setup_suppliers_orders.php)
+   - Purpose: Additional table setup
+   - Features: Suppliers and orders table creation
+
+10. VERIFY CONNECTIONS (verify_connections.php)
+    - Purpose: Database connection testing
+    - Features: Connection verification utility
+
+================================================================================
+3. FEATURES
+================================================================================
+
+CUSTOMER-FACING FEATURES:
+-------------------------
+
+1. PRODUCT BROWSING
+   - Dynamic product loading from database
+   - Product grid layout with responsive design
+   - Product cards with images, names, descriptions, prices
+   - Discount badges and pricing display
+   - Star ratings for products
+
+2. SEARCH FUNCTIONALITY
+   - Global search bar in navigation
+   - Real-time product search
+   - Search results page with filtered products
+   - Enter key search activation
+
+3. SHOPPING CART
+   - Add to cart functionality (icon button and full button)
+   - Cart persistence across sessions
+   - View cart items with images and details
+   - Remove items from cart
+   - Quantity display
+   - Real-time total calculation
+   - Empty cart handling
+
+4. CHECKOUT PROCESS
+   - Order review page
+   - Customer information display
+   - Order summary with subtotal and grand total
+   - Free shipping indicator
+   - Buy now functionality
+   - Order confirmation
+
+5. USER AUTHENTICATION
+   - User registration with validation
+   - Email uniqueness checking
+   - User login system
+   - Session management
+   - Auto-login after registration
+   - Profile dropdown menu
+
+6. RESPONSIVE DESIGN
+   - Mobile-friendly layout
+   - Tablet optimization
+   - Desktop experience
+   - Flexible grid systems
+   - Adaptive navigation
+
+7. DYNAMIC CONTENT
+   - Products loaded from database
+   - Blog posts with product integration
+   - Real-time updates when database changes
+   - Image URL support (local and external)
+
+8. NAVIGATION
+   - Sticky navigation bar
+   - Multi-page navigation menu
+   - User account dropdown
+   - Shopping cart icon
+   - Search integration
+
+9. PROMOTIONAL FEATURES
+   - Promo bar with shipping and returns info
+   - Discount badges on products
+   - Free shipping messaging
+   - Return policy display
+
+10. FOOTER INFORMATION
+    - Company information links
+    - Customer service links
+    - Help and support links
+    - Social media integration
+    - Mobile app promotion
+
+ADMIN PANEL FEATURES:
+---------------------
+
+1. DASHBOARD OVERVIEW
+   - Statistics cards (Products, Customers, Stock)
+   - Recent activity summaries
+   - Quick action buttons
+   - Visual metrics display
+
+2. PRODUCT MANAGEMENT
+   - Add new products
+   - Edit existing products
+   - Delete products
+   - Product listing with details
+   - Image URL management
+   - Price management
+
+3. ORDER MANAGEMENT
+   - View all orders
+   - Order details modal
+   - Order status tracking
+   - Status update functionality
+   - Customer information display
+   - Order items listing
+   - Order number generation
+
+4. CUSTOMER MANAGEMENT
+   - Customer list view
+   - Customer details
+   - Customer information management
+   - Customer search and filtering
+
+5. SUPPLIER MANAGEMENT
+   - Add suppliers
+   - Manage supplier information
+   - Supplier-product relationships
+   - Contact information management
+
+6. INVENTORY MANAGEMENT
+   - Stock quantity tracking
+   - Inventory levels monitoring
+   - Stock updates
+   - Low stock alerts (potential)
+
+7. ADMIN USER MANAGEMENT
+   - Admin account creation
+   - Admin permissions
+   - Admin listing
+   - Admin profile management
+
+8. SYSTEM SETTINGS
+   - Website configuration
+   - System preferences
+   - General settings management
+
+9. ADMIN AUTHENTICATION
+   - Secure admin login
+   - Admin session management
+   - Admin logout functionality
+   - Session security
+
+10. SIDEBAR NAVIGATION
+    - Organized admin menu
+    - Icon-based navigation
+    - Active page highlighting
+    - Quick access to all admin functions
+
+DATABASE FEATURES:
+-----------------
+
+1. PRODUCT TABLE
+   - Product ID, name, description, price
+   - Image URL support
+   - Stock quantity tracking
+   - Supplier relationships
+   - Timestamps (created_at, updated_at)
+
+2. USER TABLE
+   - User ID, name, email (unique)
+   - Phone, address
+   - Registration timestamps
+
+3. CART TABLE
+   - Cart items with product references
+   - Quantity management
+   - Price storage
+   - Foreign key relationships
+
+4. ORDER TABLE
+   - Order number (unique)
+   - User relationships
+   - Total amount
+   - Status tracking
+   - Shipping address
+   - Order date
+
+5. ORDER ITEMS TABLE
+   - Order-product relationships
+   - Quantity per item
+   - Unit price and subtotal
+   - Product name storage
+
+6. SUPPLIER TABLE
+   - Supplier information
+   - Contact details
+   - Company information
+   - Relationship with products
+
+7. ADMIN TABLE
+   - Admin credentials
+   - Admin information
+   - Gender field
+   - Admin ID management
+
+8. BLOG TABLE
+   - Blog posts
+   - Product visualization
+   - Author information
+   - Publication dates
+
+================================================================================
+4. LAYOUT IDEAS
+================================================================================
+
+FRONTEND LAYOUT:
+---------------
+
+1. HEADER/NAVIGATION
+   - Promo bar at top (yellow/amber background)
+   - Sticky navigation bar (white background, shadow)
+   - Logo on left (IRONIX branding)
+   - Search bar in center
+   - Navigation links (Home, Products, Features, Services, Blog, Contact, Support)
+   - User icon and cart icon on right
+   - Responsive mobile menu
+
+2. HOME PAGE LAYOUT
+   - Hero section (gradient background, call-to-action)
+   - Product grid section (responsive grid, 3-4 columns desktop)
+   - Product cards with:
+     * Product image (top)
+     * Discount badge overlay
+     * Product name
+     * Description (truncated)
+     * Price (with old price strikethrough)
+     * Star ratings
+     * Add to cart button (icon overlay on image)
+   - Footer section
+
+3. PRODUCTS PAGE LAYOUT
+   - Same header/navigation
+   - Page title "All Products"
+   - Product grid (same card design as home)
+   - Footer
+
+4. CART PAGE LAYOUT
+   - Same header/navigation
+   - Two-column layout:
+     * Left: Cart items list (flexible width)
+     * Right: Order summary box (sticky, fixed width)
+   - Cart items display:
+     * Product image (left)
+     * Product details (center)
+     * Remove button (top right)
+   - Order summary:
+     * Grand total display
+     * Checkout button
+
+5. CHECKOUT PAGE LAYOUT
+   - Same header/navigation
+   - Two-column layout:
+     * Left: Product details section
+     * Right: Order summary (sticky)
+   - Customer information box
+   - Action buttons (Buy Now, Back to Cart)
+
+6. FOOTER LAYOUT
+   - Dark background (#181818)
+   - Four-column layout:
+     * Company info
+     * Customer service
+     * Help
+     * App download and social media
+   - Copyright information
+
+COLOR SCHEME:
+------------
+- Primary Blue: #243b55 (dark blue for text and accents)
+- Primary Gold: #f5a623 (gold/orange for buttons and highlights)
+- Background: #f8f9fa (light gray)
+- White: #fff (cards and sections)
+- Promo Bar: #fff8e1 (light yellow/amber)
+- Footer: #181818 (dark gray/black)
+
+TYPOGRAPHY:
+----------
+- Font Family: Poppins (Google Fonts)
+- Weights: 400 (regular), 600 (semi-bold), 700 (bold)
+- Headings: Bold, larger sizes
+- Body: Regular weight, readable sizes
+
+ADMIN PANEL LAYOUT:
+------------------
+
+1. SIDEBAR NAVIGATION
+   - Fixed left sidebar (230px width)
+   - Dark background (#232946)
+   - Brand logo at top (gold color)
+   - Menu items with icons
+   - Active state highlighting (gold border)
+   - Footer copyright
+
+2. MAIN CONTENT AREA
+   - Flexible width (remaining space)
+   - Light background (#f8f9fa)
+   - Padding: 36px 40px
+   - Header with welcome message
+   - Statistics cards (3-column grid)
+   - Content sections below
+
+3. DASHBOARD CARDS
+   - White background
+   - Rounded corners (16px)
+   - Shadow effects
+   - Colored top border (red, blue, yellow)
+   - Icon, title, value, description
+   - Date information
+
+4. TABLES
+   - White background
+   - Rounded container
+   - Header row with colored background
+   - Alternating row colors
+   - Hover effects
+   - Action buttons
+
+5. MODALS
+   - Centered overlay
+   - White background
+   - Rounded corners
+   - Close button (X)
+   - Form elements
+   - Action buttons
+
+RESPONSIVE DESIGN:
+-----------------
+- Mobile: Single column, stacked layout
+- Tablet: 2-column layouts where appropriate
+- Desktop: 3-4 column grids, side-by-side layouts
+- Breakpoints: 600px, 900px
+- Flexible images and containers
+- Touch-friendly button sizes
+
+================================================================================
+5. TECHNOLOGIES
+================================================================================
+
+FRONTEND TECHNOLOGIES:
+---------------------
+
+1. HTML5
+   - Semantic HTML structure
+   - Modern HTML5 elements
+   - Form elements
+   - Accessibility features
+
+2. CSS3
+   - Custom CSS styling
+   - Flexbox layouts
+   - CSS Grid for product grids
+   - CSS Variables (custom properties)
+   - Media queries for responsiveness
+   - Transitions and animations
+   - Box shadows and gradients
+
+3. JavaScript (Vanilla)
+   - DOM manipulation
+   - Event handling
+   - AJAX requests (Fetch API)
+   - Dynamic content loading
+   - Form validation
+   - Cart management
+   - Search functionality
+
+4. Font Awesome Icons
+   - Version: 6.4.0
+   - CDN integration
+   - Icon library for UI elements
+   - Social media icons
+
+5. Google Fonts
+   - Poppins font family
+   - Multiple font weights
+   - CDN integration
+
+BACKEND TECHNOLOGIES:
+---------------------
+
+1. PHP
+   - Version: PHP 7.x / 8.x compatible
+   - Server-side scripting
+   - Session management
+   - Form processing
+   - Database interactions
+
+2. MySQL / MariaDB
+   - Relational database management
+   - Tables: products, users, cart, orders, order_items, suppliers, admin, blog
+   - Foreign key relationships
+   - Indexes for performance
+   - UTF-8 character encoding
+
+3. MySQLi Extension
+   - Database connection
+   - Prepared statements (potential)
+   - Query execution
+   - Result handling
+
+SERVER ENVIRONMENT:
+------------------
+
+1. XAMPP
+   - Apache web server
+   - MySQL database server
+   - PHP runtime
+   - phpMyAdmin (database management)
+
+2. Local Development
+   - localhost environment
+   - File-based project structure
+   - No framework dependencies
+
+DATABASE STRUCTURE:
+-----------------
+
+1. Products Table
+   - id (INT, Primary Key, Auto Increment)
+   - name (VARCHAR 255)
+   - description (TEXT)
+   - price (DECIMAL 10,2)
+   - image_url (VARCHAR 500)
+   - stock_quantity (INT)
+   - supplier_id (INT, Foreign Key)
+   - created_at, updated_at (TIMESTAMP)
+
+2. Users Table
+   - id (INT, Primary Key, Auto Increment)
+   - name (VARCHAR 255)
+   - email (VARCHAR 255, Unique)
+   - phone (VARCHAR 20)
+   - address (TEXT)
+   - created_at, updated_at (TIMESTAMP)
+
+3. Cart Table
+   - id (INT, Primary Key, Auto Increment)
+   - product_id (INT, Foreign Key)
+   - name (VARCHAR 255)
+   - price (DECIMAL 10,2)
+   - quantity (INT)
+   - created_at, updated_at (TIMESTAMP)
+
+4. Orders Table
+   - id (INT, Primary Key, Auto Increment)
+   - user_id (INT, Foreign Key)
+   - order_number (VARCHAR 50, Unique)
+   - total_amount (DECIMAL 10,2)
+   - status (VARCHAR 50)
+   - shipping_address (TEXT)
+   - order_date (TIMESTAMP)
+   - created_at, updated_at (TIMESTAMP)
+
+5. Order Items Table
+   - id (INT, Primary Key, Auto Increment)
+   - order_id (INT, Foreign Key)
+   - product_id (INT, Foreign Key)
+   - product_name (VARCHAR 255)
+   - quantity (INT)
+   - unit_price (DECIMAL 10,2)
+   - subtotal (DECIMAL 10,2)
+   - created_at (TIMESTAMP)
+
+6. Suppliers Table
+   - id (INT, Primary Key, Auto Increment)
+   - name (VARCHAR 255)
+   - email (VARCHAR 255)
+   - phone (VARCHAR 20)
+   - address (TEXT)
+   - company_name (VARCHAR 255)
+   - contact_person (VARCHAR 255)
+   - created_at, updated_at (TIMESTAMP)
+
+7. Admin Table
+   - id (VARCHAR 50, Primary Key)
+   - name (VARCHAR 255)
+   - email (VARCHAR 255)
+   - password (VARCHAR 255)
+   - gender (VARCHAR 10)
+   - created_at, updated_at (TIMESTAMP)
+
+8. Blog Table
+   - id (INT, Primary Key, Auto Increment)
+   - title (VARCHAR 255)
+   - content (TEXT)
+   - name (VARCHAR 255)
+   - description (TEXT)
+   - price (DECIMAL 10,2)
+   - image_url (VARCHAR 500)
+   - author (VARCHAR 100)
+   - published_at (TIMESTAMP)
+   - created_at, updated_at (TIMESTAMP)
+
+API ENDPOINTS:
+-------------
+
+1. get_products.php
+   - Method: GET
+   - Returns: JSON product data
+   - Parameters: ?all=1 for all products
+
+2. add_to_cart.php
+   - Method: POST
+   - Returns: JSON success/error
+   - Parameters: product_id, name, description, price, image_url, quantity
+
+3. remove_from_cart.php
+   - Method: POST
+   - Returns: JSON success/error
+   - Parameters: product_id
+
+4. get_cart.php
+   - Method: GET
+   - Returns: JSON cart data
+
+5. process_order.php
+   - Method: POST
+   - Returns: Order processing result
+   - Parameters: action=buy_now
+
+SECURITY FEATURES:
+-----------------
+- SQL injection prevention (real_escape_string)
+- XSS prevention (htmlspecialchars)
+- Session management
+- Email uniqueness validation
+- Form data sanitization
+
+================================================================================
+6. USER FLOW
+================================================================================
+
+CUSTOMER JOURNEY:
+----------------
+
+FLOW 1: BROWSING AND PURCHASING
+--------------------------------
+1. User visits homepage (index.php)
+   - Sees promotional banner
+   - Views featured products in grid
+   - Can use search bar
+
+2. User browses products
+   - Clicks "Products" in navigation
+   - Views all products page
+   - Sees product cards with images and prices
+
+3. User searches for product
+   - Types in search bar
+   - Presses Enter
+   - Redirected to search_results.php
+   - Views filtered products
+
+4. User adds product to cart
+   - Clicks add to cart button (icon or full button)
+   - Product added via AJAX
+   - Redirected to cart.php
+   - Sees product in cart
+
+5. User views cart
+   - Sees all cart items
+   - Views order summary with total
+   - Can remove items
+   - Can continue shopping
+
+6. User proceeds to checkout
+   - Clicks "Checkout" button
+   - Redirected to checkout.php
+   - Reviews order details
+   - Sees customer information
+   - Views final total
+
+7. User completes purchase
+   - Clicks "Buy Now" button
+   - Order processed via process_order.php
+   - Order created in database
+   - Redirected to order_success.php
+   - Sees confirmation message
+
+FLOW 2: USER REGISTRATION AND LOGIN
+------------------------------------
+1. User clicks user icon
+   - Dropdown menu appears
+   - Options: Login, Register
+
+2. User chooses registration
+   - Clicks "Register"
+   - Redirected to registration.php
+   - Fills registration form:
+     * Name
+     * Email
+     * Phone
+     * Address
+   - Submits form
+
+3. Registration processing
+   - Email uniqueness checked
+   - If email exists: Error message shown
+   - If email new: User created in database
+   - Session created
+   - Auto-login performed
+   - Redirected to homepage
+
+4. User chooses login
+   - Clicks "Login"
+   - Redirected to login.html/login.php
+   - Enters credentials
+   - Session created
+   - Redirected to homepage
+
+FLOW 3: EXPLORING WEBSITE PAGES
+--------------------------------
+1. User navigates menu
+   - Clicks "Features" → features.php
+   - Clicks "Services" → services.php
+   - Clicks "Blog" → blog.php
+   - Clicks "Contact" → contact.php
+   - Clicks "Support" → support.php
+
+2. User can return to shopping
+   - Uses navigation menu
+   - Clicks logo to return home
+   - Uses browser back button
+
+ADMIN JOURNEY:
+-------------
+
+FLOW 1: ADMIN LOGIN
+-------------------
+1. Admin accesses admin login
+   - Navigates to admin_login.html
+   - Enters admin credentials
+   - Submits login form
+
+2. Admin authentication
+   - Credentials verified
+   - Admin session created
+   - Redirected to admin_dashboard.php
+
+FLOW 2: ADMIN DASHBOARD
+-----------------------
+1. Admin views dashboard
+   - Sees statistics cards:
+     * Total Products
+     * Customers
+     * Current Stock
+   - Views recent activity sections
+   - Accesses quick actions
+
+FLOW 3: PRODUCT MANAGEMENT
+---------------------------
+1. Admin clicks "Products" in sidebar
+   - Redirected to admin_products.php
+   - Views product list
+   - Can add new product
+   - Can edit existing product
+   - Can delete product
+
+2. Admin adds product
+   - Fills product form:
+     * Name
+     * Description
+     * Price
+     * Image URL
+   - Submits form
+   - Product added to database
+   - Appears on frontend immediately
+
+FLOW 4: ORDER MANAGEMENT
+-------------------------
+1. Admin clicks "Orders" in sidebar
+   - Redirected to admin_orders.php
+   - Views all orders table
+   - Sees order details:
+     * Order number
+     * Customer name/email
+     * Order date
+     * Total amount
+     * Status
+
+2. Admin views order details
+   - Clicks "View Details" button
+   - Modal opens with:
+     * Customer information
+     * Order information
+     * Order items with images
+   - Closes modal
+
+3. Admin updates order status
+   - Clicks "Update Status" button
+   - Status modal opens
+   - Selects new status:
+     * Pending
+     * Processing
+     * Shipped
+     * Delivered
+     * Cancelled
+   - Submits update
+   - Status saved to database
+   - Table refreshes
+
+FLOW 5: CUSTOMER MANAGEMENT
+----------------------------
+1. Admin clicks "Customers" in sidebar
+   - Redirected to admin_customers.php
+   - Views customer list
+   - Sees customer details:
+     * Name
+     * Email
+     * Phone
+     * Address
+     * Registration date
+
+FLOW 6: SUPPLIER MANAGEMENT
+---------------------------
+1. Admin clicks "Suppliers" in sidebar
+   - Redirected to admin_suppliers.php
+   - Views supplier list
+   - Can add new supplier
+   - Can manage supplier information
+   - Links suppliers to products
+
+FLOW 7: INVENTORY MANAGEMENT
+------------------------------
+1. Admin clicks "Inventory" in sidebar
+   - Redirected to admin_inventory.php
+   - Views stock levels
+   - Monitors inventory
+   - Updates stock quantities
+
+FLOW 8: ADMIN USER MANAGEMENT
+------------------------------
+1. Admin clicks "Admins" in sidebar
+   - Redirected to admin_admins.php
+   - Views admin user list
+   - Manages admin accounts
+   - Sets permissions
+
+FLOW 9: SYSTEM SETTINGS
+-----------------------
+1. Admin clicks "Settings" in sidebar
+   - Redirected to admin_settings.php
+   - Configures system settings
+   - Updates website preferences
+
+FLOW 10: ADMIN LOGOUT
+---------------------
+1. Admin clicks logout
+   - Session terminated
+   - Redirected to login page
+   - Must re-authenticate to access admin panel
+
+TECHNICAL FLOWS:
+---------------
+
+FLOW 1: DYNAMIC PRODUCT LOADING
+--------------------------------
+1. Page loads (index.php or products.php)
+2. JavaScript executes on DOMContentLoaded
+3. Fetch request to get_products.php
+4. Server queries products table
+5. Returns JSON data
+6. JavaScript creates product cards
+7. Cards inserted into DOM
+8. User sees products
+
+FLOW 2: CART OPERATIONS
+------------------------
+1. User clicks add to cart
+2. JavaScript collects product data
+3. FormData created with product info
+4. Fetch POST to add_to_cart.php
+5. Server inserts into cart table
+6. Returns JSON success
+7. JavaScript redirects to cart.php
+8. Cart page queries cart table
+9. Displays cart items
+
+FLOW 3: ORDER PROCESSING
+-------------------------
+1. User clicks "Buy Now" on checkout
+2. Form submits to process_order.php
+3. Server:
+   - Generates unique order number
+   - Creates order record
+   - Creates order_items records
+   - Calculates totals
+   - Updates database
+4. Redirects to order_success.php
+5. User sees confirmation
+
+FLOW 4: SEARCH FUNCTIONALITY
+------------------------------
+1. User types in search bar
+2. Presses Enter key
+3. JavaScript captures query
+4. Redirects to search_results.php?query=...
+5. Server processes query
+6. Searches products table
+7. Returns matching products
+8. Displays results
+
+ERROR HANDLING FLOWS:
+--------------------
+
+FLOW 1: DATABASE CONNECTION FAILURE
+-----------------------------------
+- Connection error message displayed
+- Page may continue with limited functionality
+- Error logged
+
+FLOW 2: CART OPERATION FAILURE
+-------------------------------
+- Error message shown to user
+- Cart state preserved
+- User can retry operation
+
+FLOW 3: ORDER PROCESSING FAILURE
+---------------------------------
+- Error message displayed
+- Order not created
+- User returned to checkout
+- Can retry purchase
+
+FLOW 4: INVALID USER INPUT
+--------------------------
+- Form validation errors shown
+- User prompted to correct input
+- Submission prevented until valid
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================
+
+This document provides a comprehensive overview of the Ironix Hardware Shop
+website, including its purpose, pages, features, layout, technologies, and
+user flows. For additional information or updates, please refer to the
+source code and database schema files.
+
+================================================================================
+
